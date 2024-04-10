@@ -22,3 +22,9 @@ C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\ChessUI.
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\ChessUI.dll
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\refint\ChessUI.dll
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\ChessUI.pdb
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\bin\Debug\net6.0-windows7.0\ChessUI.deps.json
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\bin\Debug\net6.0-windows7.0\ChessUI.runtimeconfig.json
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\bin\Debug\net6.0-windows7.0\ChessUI.pdb
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\ChessUI.sourcelink.json
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\ChessUI.genruntimeconfig.cache
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\ref\ChessUI.dll

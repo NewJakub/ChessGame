@@ -26,12 +26,9 @@ namespace ChessUI
 
             var board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
             DrawBoard(board);
-            while (!board.IsEndGame)
-            {
-                GenerateMove(board);
-                DrawBoard(board);
-            }   
-
+            board.Move("e4");
+            DrawBoard(board);
+            
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -68,6 +65,7 @@ namespace ChessUI
         }
         private void DrawBoard(ChessBoard board)
         {
+            PieceGrid.Children.Clear();
             string fen = board.ToFen().Split(' ')[0].Replace("/", string.Empty);
             foreach (char item in fen)
             {
