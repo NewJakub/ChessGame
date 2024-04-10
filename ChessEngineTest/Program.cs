@@ -2,7 +2,13 @@
 
 var board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
 string fen = board.ToFen().Split(' ')[0].Replace("/", string.Empty);
-Console.WriteLine(fen);
+
+foreach (Position f in board.GeneratePositions(new Position("a2")))
+{
+    Console.WriteLine(f);
+
+}
+
 //ChessLogic c = new ChessLogic();
 
 //char[] characters = { '┌', '─', '┐', '│', '└', '┘','\n' };

@@ -23,7 +23,7 @@ namespace ChessUI
         public MainWindow()
         {
             InitializeComponent();
-
+            
             var board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
             DrawBoard(board);
             board.Move("e4");
@@ -39,10 +39,9 @@ namespace ChessUI
                 MenuContainer.Content = pauseMenu;            
             }    
         }
-
+        
         private bool IsMenuOnScreen()
         {
-            
             return MenuContainer.Content != null;
         }
 
@@ -141,6 +140,22 @@ namespace ChessUI
                 }
             }
             
+        }
+
+        private void BoardGrid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(this);
+            Position pos = PointToSquare(point);
+            
+        }
+
+        private Position PointToSquare(Point point)
+        {
+            double squareSideLength = BoardGrid.ActualWidth / 8;
+            short column = (short)(point.X / squareSideLength);
+            short row = (short)(point.Y / squareSideLength);
+
+            return new Position(row, column);
         }
     }
 }

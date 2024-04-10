@@ -16,3 +16,4 @@ C:\Users\jakub\Skola\MVOP\ChessGame\ChessEngineTest\obj\Debug\net6.0\refint\Ches
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessEngineTest\obj\Debug\net6.0\ChessEngineTest.pdb
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessEngineTest\obj\Debug\net6.0\ChessEngineTest.genruntimeconfig.cache
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessEngineTest\obj\Debug\net6.0\ref\ChessEngineTest.dll
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessEngineTest\obj\Debug\net6.0\ChessEngineTest.sourcelink.json
