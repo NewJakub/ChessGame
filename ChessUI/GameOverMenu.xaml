@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="ChessUI.GameOverMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChessUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Border Width="500"
+            Height="250"
+            Style="{StaticResource BorderStyle}">
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="ResultText"
+                       Text="ResultText"
+                       Style="{StaticResource TextStyle}"/>
+
+            <Button x:Name="RestartButton" 
+                    Grid.Row="1"
+                    Click="RestartButton_Click"
+                    Style="{StaticResource ButtonStyle}"
+                    Width="300"
+                    Height="60"
+                    >Hrát Znovu</Button>
+
+            <Button x:Name="QuitButton" 
+                    Grid.Row="2"
+                    Click="QuitButton_Click"
+                    Style="{StaticResource ButtonStyle}"
+                    Width="300"
+                    Height="60"
+                    >Opustit aplikaci</Button>
+
+        </Grid>
+    </Border>
+    
+</UserControl>
