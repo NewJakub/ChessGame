@@ -14,19 +14,18 @@ namespace ChessUI
         public Position chosenPos;
         public Position chosenFinalPos;
         public ChessBoard board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
-        public bool chosenPiece = false;
+        public bool chosenFirstPiece = false;
+        public bool chosenSecondPiece = true;
+
         public bool isWhite = true;
-        public bool isYourTurn = false;
+        public bool isYourTurn = true;
         
         public MainWindow()
         {
             InitializeComponent();
 
             DrawBoard(board);
-
-
             
-
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -64,22 +63,21 @@ namespace ChessUI
         {
             board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
             DrawBoard(board);
-
+            
         }
-        private void GetPlayerMove(ChessBoard board)
+        private void GetPlayerMove(Move move, ChessBoard board)
         {
-            string moveInput = Console.ReadLine();
+            
 
-            if (board.IsValidMove(moveInput))
+            if (board.IsValidMove(move))
             {
-                board.Move(moveInput);
+                board.Move(move);
+                DrawBoard(board);
             }
             else
             {
-                GetPlayerMove(board);
+                GetPlayerMove(move, board);
             }
-            
-            
         }
         private void DrawBoard(ChessBoard board)
         {
@@ -163,19 +161,28 @@ namespace ChessUI
 
         private void BoardGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Point point = e.GetPosition(PieceGrid);
-            Position pos = PointToSquare(point);
 
-            if (!chosenPiece)
+            if (!isYourTurn) return;
+            
+            
+
+            if (chosenSecondPiece)
             {
+                Point point = e.GetPosition(PieceGrid);
+                Position pos = PointToSquare(point);
                 chosenPos = pos;
-                chosenPiece = true;
+                chosenSecondPiece = false;
+                chosenFirstPiece = true;
+                
             }
-            else if (chosenPiece)
+            else if (chosenFirstPiece)
             {
+                Point point = e.GetPosition(PieceGrid);
+                Position pos = PointToSquare(point);
                 chosenFinalPos = pos;
-                chosenPiece = false;
-                MovePiece(board);
+                chosenFirstPiece = false;
+                chosenSecondPiece = true;
+                GetPlayerMove(new Move(chosenPos, chosenFinalPos), board);
                 GenerateMove(board);
 
             }
@@ -219,5 +226,18 @@ namespace ChessUI
 
             return new Position(column, row);
         }
+
+        //private bool IsValidateMove(Position firstPos, Position secondPos, ChessBoard board)
+        //{
+        //    foreach (Position m in board.GeneratePositions(firstPos))
+        //    {
+        //        if (m.File() == secondPos.File() && m.Rank() == secondPos.Rank())
+        //        {
+        //            return true;
+        //        }
+
+        //    }
+        //    return true;
+        //}
     }
 }

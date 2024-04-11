@@ -4,15 +4,27 @@ var board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
 string fen = board.ToFen().Split(' ')[0].Replace("/", string.Empty);
 
 Position pos = new Position("a2");
+Position pos1 = new Position("a4");
 
-var moves = board.Moves(pos);
+//if (board["a2"] != null)
+//{
+//    Console.WriteLine(fen);
+//}
+foreach (Move m in board.Moves(pos))
+{
+    Console.WriteLine(m);
+
+}
+Console.Write(pos.File);
+
+//var moves = board.Moves(pos);
 
 
-Move m = new Move(new Position("a2"), new Position("a3"));
+//Move m = new Move(new Position("a2"), new Position("a3"));
 
-string stringSan;
-board.TryParseToSan(m, out stringSan);
-board.Move(stringSan);
+//string stringSan;
+//board.TryParseToSan(m, out stringSan);
+//board.Move(stringSan);
 
 board.ToAscii();
 //ChessLogic c = new ChessLogic();
