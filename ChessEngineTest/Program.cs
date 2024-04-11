@@ -3,12 +3,18 @@
 var board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
 string fen = board.ToFen().Split(' ')[0].Replace("/", string.Empty);
 
-foreach (Position f in board.GeneratePositions(new Position("a2")))
-{
-    Console.WriteLine(f);
+Position pos = new Position("a2");
 
-}
+var moves = board.Moves(pos);
 
+
+Move m = new Move(new Position("a2"), new Position("a3"));
+
+string stringSan;
+board.TryParseToSan(m, out stringSan);
+board.Move(stringSan);
+
+board.ToAscii();
 //ChessLogic c = new ChessLogic();
 
 //char[] characters = { '┌', '─', '┐', '│', '└', '┘','\n' };

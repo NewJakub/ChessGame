@@ -8,7 +8,8 @@
         Title="Chess" Height="450" Width="800"
         Icon="Assets/icon.ico"
         WindowStartupLocation="CenterScreen"
-        KeyDown="Window_KeyDown">
+        KeyDown="Window_KeyDown"
+        x:Name="WindowForMeasure">
         
     <Viewbox>
         <Grid MouseDown="BoardGrid_MouseDown"

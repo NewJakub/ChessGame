@@ -20,14 +20,19 @@ namespace ChessUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Position chosenPos;
+        public Position chosenFinalPos;
+        public ChessBoard board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
+        public bool chosenPiece = false;
+        
         public MainWindow()
         {
             InitializeComponent();
-            
-            var board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
+               
             DrawBoard(board);
             board.Move("e4");
             DrawBoard(board);
+            
             
         }
 
@@ -43,6 +48,17 @@ namespace ChessUI
         private bool IsMenuOnScreen()
         {
             return MenuContainer.Content != null;
+        }
+
+        private void MovePiece(ChessBoard board )
+        {
+           
+            var moves = board.Moves(chosenPos);
+            Move m = new Move(chosenPos, chosenFinalPos);
+            board.Move(m);
+
+            DrawBoard(board);
+            
         }
 
         private void GenerateMove(ChessBoard board)
@@ -61,6 +77,8 @@ namespace ChessUI
             {
                 GetPlayerMove(board);
             }
+            
+            
         }
         private void DrawBoard(ChessBoard board)
         {
@@ -144,18 +162,63 @@ namespace ChessUI
 
         private void BoardGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Point point = e.GetPosition(this);
+            Point point = e.GetPosition(PieceGrid);
             Position pos = PointToSquare(point);
+
+            if (!chosenPiece)
+            {
+                chosenPos = pos;
+                chosenPiece = true;
+            }
+            else
+            {
+                chosenFinalPos = pos;
+                chosenPiece = false;
+                MovePiece(board);
+            }
+            
+            
+            
             
         }
 
         private Position PointToSquare(Point point)
         {
-            double squareSideLength = BoardGrid.ActualWidth / 8;
-            short column = (short)(point.X / squareSideLength);
-            short row = (short)(point.Y / squareSideLength);
+            double squareSideLength = PieceGrid.ActualHeight / 8;
+            short column = (short)(point.X  / squareSideLength);
+            short row = (short)((point.Y / squareSideLength));
 
-            return new Position(row, column);
+            switch (row)
+            {
+                case 0:
+                    row = 7;
+                    break; 
+                case 1:
+                    row = 6;
+                    break;
+                case 2:
+                    row = 5;
+                    break;
+                case 3:
+                    row = 4;
+                    break;
+                case 4:
+                    row = 3;
+                    break;
+                case 5:
+                    row = 2;
+                    break;
+                case 6:
+                    row = 1;
+                    break;
+                case 7:
+                    row = 0;
+                    break;
+                default:
+                    break;
+            }
+
+            return new Position(column, row);
         }
     }
 }
