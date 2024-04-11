@@ -28,3 +28,5 @@ C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\bin\Debug\net6.0-windows7.0\ChessUI.
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\ChessUI.sourcelink.json
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\ChessUI.genruntimeconfig.cache
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\ref\ChessUI.dll
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\MainMenu.g.cs
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\MainMenu.baml

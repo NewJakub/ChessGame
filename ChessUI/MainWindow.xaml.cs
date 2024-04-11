@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Chess;
 namespace ChessUI
 {
@@ -24,16 +15,18 @@ namespace ChessUI
         public Position chosenFinalPos;
         public ChessBoard board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
         public bool chosenPiece = false;
+        public bool isWhite = true;
+        public bool isYourTurn = false;
         
         public MainWindow()
         {
             InitializeComponent();
-               
+
             DrawBoard(board);
-            board.Move("e4");
-            DrawBoard(board);
+
+
             
-            
+
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -41,29 +34,37 @@ namespace ChessUI
             if (e.Key == Key.Escape && !IsMenuOnScreen())
             {
                 PauseMenu pauseMenu = new PauseMenu();
-                MenuContainer.Content = pauseMenu;            
+                MenuContainer.Content = pauseMenu;
             }    
+            else if (e.Key == Key.Escape && IsMenuOnScreen())
+            {
+                MenuContainer.Content = null;
+            }
         }
         
         private bool IsMenuOnScreen()
         {
             return MenuContainer.Content != null;
         }
-
+        public void makeDisapeaer()
+        {
+            MenuContainer.Content = null;
+        }
         private void MovePiece(ChessBoard board )
         {
            
-            var moves = board.Moves(chosenPos);
             Move m = new Move(chosenPos, chosenFinalPos);
             board.Move(m);
 
             DrawBoard(board);
-            
+            isYourTurn = false;            
         }
 
         private void GenerateMove(ChessBoard board)
         {
             board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
+            DrawBoard(board);
+
         }
         private void GetPlayerMove(ChessBoard board)
         {
@@ -170,23 +171,21 @@ namespace ChessUI
                 chosenPos = pos;
                 chosenPiece = true;
             }
-            else
+            else if (chosenPiece)
             {
                 chosenFinalPos = pos;
                 chosenPiece = false;
                 MovePiece(board);
+                GenerateMove(board);
+
             }
-            
-            
-            
-            
         }
 
         private Position PointToSquare(Point point)
         {
             double squareSideLength = PieceGrid.ActualHeight / 8;
             short column = (short)(point.X  / squareSideLength);
-            short row = (short)((point.Y / squareSideLength));
+            short row = (short)(point.Y / squareSideLength);
 
             switch (row)
             {

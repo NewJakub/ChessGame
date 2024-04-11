@@ -29,6 +29,7 @@ namespace ChessUI
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mainWindow = new MainWindow();
 
         }
 

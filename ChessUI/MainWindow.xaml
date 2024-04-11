@@ -12,20 +12,24 @@
         x:Name="WindowForMeasure">
         
     <Viewbox>
+        
         <Grid MouseDown="BoardGrid_MouseDown"
               x:Name="BoardGrid"
-              Width="450"
+              Width="800"
               Height="450">
-            <Grid.Background>
-                <ImageBrush ImageSource="Assets/board.png"/>
-            </Grid.Background>
+            
 
             <UniformGrid x:Name="PieceGrid"
                          Rows="8"
-                         Columns="8">
+                         Columns="8"
+                         Width="450"
+Height="450">
+                <UniformGrid.Background>
+                    <ImageBrush ImageSource="Assets/board.png"/>
+                </UniformGrid.Background>
             </UniformGrid>
-            
             <ContentControl x:Name="MenuContainer"/>
+            
         </Grid>
         
     </Viewbox>
