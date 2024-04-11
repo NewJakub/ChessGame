@@ -11,14 +11,13 @@ namespace ChessUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Position chosenPos;
-        public Position chosenFinalPos;
+        public Position chosenPos = new Position();
+        public Position chosenFinalPos = new Position();
         public ChessBoard board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
-        public bool chosenFirstPiece = false;
-        public bool chosenSecondPiece = true;
+        
 
         public bool isWhite = true;
-        public bool isYourTurn = true;
+        public int c = 0;
         
         public MainWindow()
         {
@@ -56,7 +55,7 @@ namespace ChessUI
             board.Move(m);
 
             DrawBoard(board);
-            isYourTurn = false;            
+                        
         }
 
         private void GenerateMove(ChessBoard board)
@@ -65,19 +64,20 @@ namespace ChessUI
             DrawBoard(board);
             
         }
-        private void GetPlayerMove(Move move, ChessBoard board)
+        private bool GetPlayerMove(Move move, ChessBoard board)
         {
             
+
 
             if (board.IsValidMove(move))
             {
                 board.Move(move);
                 DrawBoard(board);
+                
+                return true;
             }
-            else
-            {
-                GetPlayerMove(move, board);
-            }
+            
+            return false;
         }
         private void DrawBoard(ChessBoard board)
         {
@@ -161,31 +161,34 @@ namespace ChessUI
 
         private void BoardGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            Point point = e.GetPosition(PieceGrid);
+            Position pos = PointToSquare(point);
 
-            if (!isYourTurn) return;
-            
-            
 
-            if (chosenSecondPiece)
+            if (c == 0)
             {
-                Point point = e.GetPosition(PieceGrid);
-                Position pos = PointToSquare(point);
+                if (board[pos]?.Color == null)
+                {
+                    return;
+                }
+                if (board[pos].Color == 2) return;
                 chosenPos = pos;
-                chosenSecondPiece = false;
-                chosenFirstPiece = true;
-                
+                c++;
             }
-            else if (chosenFirstPiece)
+            else if (c == 1)
             {
-                Point point = e.GetPosition(PieceGrid);
-                Position pos = PointToSquare(point);
+                c++;
                 chosenFinalPos = pos;
-                chosenFirstPiece = false;
-                chosenSecondPiece = true;
-                GetPlayerMove(new Move(chosenPos, chosenFinalPos), board);
-                GenerateMove(board);
-
+                
+                
+                
+                if (GetPlayerMove(new Move(chosenPos, chosenFinalPos), board)) GenerateMove(board);
+                chosenPos = new Position();
+                chosenFinalPos = new Position();
+                c = 0;
             }
+
+
         }
 
         private Position PointToSquare(Point point)
