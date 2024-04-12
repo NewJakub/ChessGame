@@ -25,16 +25,17 @@
                        Text="ResultText"
                        Style="{StaticResource TextStyle}"/>
 
-            <Button x:Name="RestartButton" 
+            <!--<Button x:Name="RestartButton" 
                     Grid.Row="1"
                     Click="RestartButton_Click"
                     Style="{StaticResource ButtonStyle}"
                     Width="300"
                     Height="60"
-                    >Hrát Znovu</Button>
+                    >Hrát Znovu</Button>-->
 
             <Button x:Name="QuitButton" 
-                    Grid.Row="2"
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
                     Click="QuitButton_Click"
                     Style="{StaticResource ButtonStyle}"
                     Width="300"

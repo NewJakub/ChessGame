@@ -23,14 +23,7 @@ namespace ChessUI
         
         public MainWindow()
         {
-            if (Random.Shared.Next(0,2) == 1) 
-            {
-                isWhite = false;            
-            }
-            else
-            {
-                isWhite = false;
-            }
+            isWhite = true;
             
             InitializeComponent();
             DrawBoard(board);
@@ -200,11 +193,24 @@ namespace ChessUI
 
             if (c == 0)
             {
-                if (board[pos]?.Color == null) return;
-                
-                if (board[pos].Color == 2 && !isWhite) return;
+                if (isWhite)
+                {
+                    if (board[pos]?.Color == null) return;
 
-                if (board[pos].Color == 1 && isWhite) return;
+                    if (board[pos].Color == 2 && isWhite) return;
+
+                    if (board[pos].Color == 1 && !isWhite) return;
+
+                }
+                else if (!isWhite)
+                {
+                    if (board[pos]?.Color == null) return;
+
+                    if (board[pos].Color == 2 && isWhite) return;
+
+                    if (board[pos].Color == 1 && !isWhite) return;
+
+                }
 
                 chosenPos = pos;
                 c++;

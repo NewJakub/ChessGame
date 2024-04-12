@@ -9,7 +9,8 @@
         Icon="Assets/icon.ico"
         WindowStartupLocation="CenterScreen"
         KeyDown="Window_KeyDown"
-        x:Name="WindowForMeasure">
+        x:Name="WindowForMeasure"
+        Background="#cc380404">
         
     <Viewbox>
         
