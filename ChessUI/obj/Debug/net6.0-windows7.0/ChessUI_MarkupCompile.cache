@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\App.xaml
-5-1853524739
+6-2010593728
 
-71532565769
+8-2025752813
 196-1454098091
-GameOverMenu.xaml;MainMenu.xaml;MainWindow.xaml;PauseMenu.xaml;Settings.xaml;
+GameOverMenu.xaml;MainMenu.xaml;MainWindow.xaml;PauseMenu.xaml;Settings.xaml;Timer.xaml;
 
 False
 

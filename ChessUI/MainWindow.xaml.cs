@@ -17,15 +17,30 @@ namespace ChessUI
         public ChessBoard board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
         
 
-        public bool isWhite = true;
+        public bool isWhite;
+        public bool isTimerOn;
         public int c = 0;
         
         public MainWindow()
         {
-            InitializeComponent();
-
-            DrawBoard(board);
+            if (Random.Shared.Next(0,2) == 1) 
+            {
+                isWhite = false;            
+            }
+            else
+            {
+                isWhite = false;
+            }
             
+            InitializeComponent();
+            DrawBoard(board);
+
+            if (!isWhite) GenerateMove(board);
+            if (isTimerOn)
+            {
+                Timer timer = new Timer();
+                TimerContainer.Content = timer;
+            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -185,11 +200,12 @@ namespace ChessUI
 
             if (c == 0)
             {
-                if (board[pos]?.Color == null)
-                {
-                    return;
-                }
-                if (board[pos].Color == 2) return;
+                if (board[pos]?.Color == null) return;
+                
+                if (board[pos].Color == 2 && !isWhite) return;
+
+                if (board[pos].Color == 1 && isWhite) return;
+
                 chosenPos = pos;
                 c++;
             }
@@ -272,18 +288,7 @@ namespace ChessUI
             board = new ChessBoard();
             DrawBoard(board);
         }
-        //private bool IsValidateMove(Position firstPos, Position secondPos, ChessBoard board)
-        //{
-        //    foreach (Position m in board.GeneratePositions(firstPos))
-        //    {
-        //        if (m.File() == secondPos.File() && m.Rank() == secondPos.Rank())
-        //        {
-        //            return true;
-        //        }
-
-        //    }
-        //    return true;
-        //}
+        
 
         public void StopShowingMenu()
         {

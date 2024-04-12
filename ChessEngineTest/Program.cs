@@ -15,7 +15,7 @@ while (!board.IsEndGame)
 
 Console.WriteLine(board.ToAscii());
 Console.WriteLine(board.WhiteKingChecked);
-Console.WriteLine(board.BlackKingChecked);
+Console.WriteLine(Random.Shared.Next(0, 2));
 
 //if (board["a2"] != null)
 //{
