@@ -31,3 +31,4 @@ C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\ref\Ches
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\MainMenu.g.cs
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\MainMenu.baml
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\Settings.g.cs
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\Settings.baml
