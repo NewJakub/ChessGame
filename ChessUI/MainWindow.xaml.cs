@@ -251,8 +251,26 @@ namespace ChessUI
         {
             GameOverMenu gameOverMenu = new GameOverMenu();
             MenuContainer.Content = gameOverMenu;
-        }
+            if (board.BlackKingChecked)
+            {
+                gameOverMenu.ResultText.Text = "Bílý vyhrál!";
+            }
+            else if (board.WhiteKingChecked) 
+            { 
+                gameOverMenu.ResultText.Text = "Černý vyhrál!";
 
+            }
+            else
+            {
+                gameOverMenu.ResultText.Text = "Remíza!";
+
+            }
+        }
+        public void StartNewGame()
+        {
+            board = new ChessBoard();
+            DrawBoard(board);
+        }
         //private bool IsValidateMove(Position firstPos, Position secondPos, ChessBoard board)
         //{
         //    foreach (Position m in board.GeneratePositions(firstPos))

@@ -23,10 +23,9 @@ namespace ChessUI
 
         private void RestartButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.board = new ChessBoard();
-            mainWindow.DrawBoard(mainWindow.board);
-            this.Visibility = Visibility.Collapsed;
+            MainWindow m = new MainWindow();
+            m.StartNewGame();
+
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
