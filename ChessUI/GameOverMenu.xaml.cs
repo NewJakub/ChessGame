@@ -13,7 +13,6 @@ namespace ChessUI
 
     public partial class GameOverMenu : UserControl
     {
-        public event Action<Option> OptionSelected;
 
         public GameOverMenu()
         {
@@ -24,8 +23,9 @@ namespace ChessUI
         private void RestartButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow m = new MainWindow();
-            m.StartNewGame();
-
+            m.StartNewGame(m.board);
+            this.Visibility = Visibility.Collapsed;
+            
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)

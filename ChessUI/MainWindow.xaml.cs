@@ -1,4 +1,5 @@
 ﻿using System;
+using System.DirectoryServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -266,7 +267,7 @@ namespace ChessUI
 
             }
         }
-        public void StartNewGame()
+        public void StartNewGame(ChessBoard board)
         {
             board = new ChessBoard();
             DrawBoard(board);
@@ -283,5 +284,10 @@ namespace ChessUI
         //    }
         //    return true;
         //}
+
+        public void StopShowingMenu()
+        {
+            MenuContainer.Content = null;
+        }
     }
 }
