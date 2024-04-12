@@ -60,8 +60,18 @@ namespace ChessUI
 
         private void GenerateMove(ChessBoard board)
         {
-            board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
-            DrawBoard(board);
+            if (board.IsEndGame)
+            {
+                ShowGameOverMenu();
+            }
+            else 
+            {
+
+                board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
+
+                DrawBoard(board);
+            }
+            
             
         }
         private bool GetPlayerMove(Move move, ChessBoard board)
@@ -73,13 +83,20 @@ namespace ChessUI
             {
                 board.Move(move);
                 DrawBoard(board);
+
+                if (board.IsEndGame)
+                {
+                    ShowGameOverMenu();
+                    
+                }
+                
                 
                 return true;
             }
             
             return false;
         }
-        private void DrawBoard(ChessBoard board)
+        public void DrawBoard(ChessBoard board)
         {
             PieceGrid.Children.Clear();
             string fen = board.ToFen().Split(' ')[0].Replace("/", string.Empty);
@@ -228,6 +245,12 @@ namespace ChessUI
             }
 
             return new Position(column, row);
+        }
+
+        private void ShowGameOverMenu() 
+        {
+            GameOverMenu gameOverMenu = new GameOverMenu();
+            MenuContainer.Content = gameOverMenu;
         }
 
         //private bool IsValidateMove(Position firstPos, Position secondPos, ChessBoard board)

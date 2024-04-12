@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Chess;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -22,7 +23,10 @@ namespace ChessUI
 
         private void RestartButton_Click(object sender, RoutedEventArgs e)
         {
-            OptionSelected.Invoke(Option.Restart);
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.board = new ChessBoard();
+            mainWindow.DrawBoard(mainWindow.board);
+            this.Visibility = Visibility.Collapsed;
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
