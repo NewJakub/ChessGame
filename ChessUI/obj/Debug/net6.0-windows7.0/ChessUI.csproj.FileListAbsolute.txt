@@ -34,3 +34,5 @@ C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\Settings
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\Settings.baml
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\Timer.g.cs
 C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\Timer.baml
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\BoardPage.g.cs
+C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\BoardPage.baml

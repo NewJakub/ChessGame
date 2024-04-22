@@ -5,34 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChessUI"
         mc:Ignorable="d"
-        Title="Chess" Height="450" Width="800"
-        Icon="Assets/icon.ico"
-        WindowStartupLocation="CenterScreen"
-        KeyDown="Window_KeyDown"
-        x:Name="WindowForMeasure"
-        Background="#cc380404">
-        
-    <Viewbox>
-        
-        <Grid MouseDown="BoardGrid_MouseDown"
-              x:Name="BoardGrid"
-              Width="800"
-              Height="450">
-            
+        Title="MainMenu" Height="450" Width="800">
 
-            <UniformGrid x:Name="PieceGrid"
-                         Rows="8"
-                         Columns="8"
-                         Width="450"
-                         Height="450">
-                <UniformGrid.Background>
-                    <ImageBrush ImageSource="Assets/board.png"/>
-                </UniformGrid.Background>
-            </UniformGrid>
-            <ContentControl x:Name="MenuContainer"/>
-            <ContentControl x:Name="TimerContainer" />
+    <Border 
+        Style="{StaticResource BorderStyle}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="GameText"
+                   Text="Šachy"
+                   Style="{StaticResource TextStyle}"/>
+
+            <Button x:Name="NewGameButton" 
+                Grid.Row="1"
+                Click="NewGameButton_Click"
+                Style="{StaticResource ButtonStyle}"
+                Width="450"
+                Height="90"
+                >Nová hra</Button>
+
+            <Button x:Name="QuitButton" 
+                Grid.Row="2"
+                Click="QuitButton_Click"
+                Style="{StaticResource ButtonStyle}"
+                Width="450"
+                Height="90"
+                >Opustit aplikaci</Button>
+            <Frame x:Name="MainFrame"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Grid.RowSpan="3"
+                   Grid.ColumnSpan="1"
+                   NavigationUIVisibility="Hidden"></Frame>
         </Grid>
-        
-    </Viewbox>
-    
+    </Border>
 </Window>
