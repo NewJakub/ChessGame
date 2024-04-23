@@ -10,27 +10,54 @@
         Background="White"
         >
     <!--x:Name="WindowForMeasure"-->
-    <Viewbox>
+    
         <!--MouseDown="BoardGrid_MouseDown"-->
-        <Grid 
-              x:Name="BoardGrid">
-
-
+    <Grid x:Name="BoardGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1"
+              Grid.Row="0"
+              Grid.RowSpan="8"
+              Grid.ColumnSpan="5"
+              >
             <UniformGrid x:Name="PieceGrid"
-             Rows="8"
-             Columns="8"
-             MinHeight="1000"
-             MinWidth="1000">
-
+                           Rows="8"
+                           Columns="8"
+                           MouseDown="PieceGrid_MouseDown"
+                           Width="450"
+                           Height="450">
                 <UniformGrid.Background>
                     <ImageBrush ImageSource="Assets/board.png"/>
                 </UniformGrid.Background>
             </UniformGrid>
-            <ContentControl x:Name="MenuContainer"/>
-            <ContentControl x:Name="TimerContainer" />
-            <Frame x:Name="BoardFrame"/> 
         </Grid>
+        <ContentControl x:Name="MenuContainer"/>
+        <Frame x:Name="BoardFrame"/>
+        <TextBlock FontSize="40"
+                   x:Name="TimerText"
+                   Visibility="Hidden">17:50</TextBlock>
 
-    </Viewbox>
-
+        <ContentControl x:Name="TimerContainer" 
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="7"
+                            Grid.RowSpan="8"/>
+    </Grid>
 </Page>

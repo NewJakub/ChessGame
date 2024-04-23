@@ -24,11 +24,11 @@ namespace ChessUI
             if (ColorSelector.Text == "Bílá") GameSettings.isWhite = true;
             else GameSettings.isWhite = false;
 
-            if (ColorSelector.Text == "Ano") GameSettings.isTimerOn = true;
+            if (TimerSelector.Text == "Ano") GameSettings.isTimerOn = true; 
             else GameSettings.isTimerOn = false;
             SettingsFrame.NavigationService.Navigate(new Uri("BoardPage.xaml", UriKind.Relative));
 
-
+            BoardPage.GameSettings = GameSettings;
         }
 
 

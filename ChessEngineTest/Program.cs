@@ -6,16 +6,19 @@ string fen = board.ToFen().Split(' ')[0].Replace("/", string.Empty);
 Position pos = new Position("a2");
 Position pos1 = new Position("a4");
 
-
-while (!board.IsEndGame) 
-{
-    var moves = board.Moves();
-    board.Move(moves[Random.Shared.Next(moves.Length)]);
-}
+Console.WriteLine(fen);
 
 Console.WriteLine(board.ToAscii());
-Console.WriteLine(board.WhiteKingChecked);
-Console.WriteLine(Random.Shared.Next(0, 2));
+
+//while (!board.IsEndGame) 
+//{
+//    var moves = board.Moves();
+//    board.Move(moves[Random.Shared.Next(moves.Length)]);
+//}
+
+//Console.WriteLine(board.ToAscii());
+//Console.WriteLine(board.WhiteKingChecked);
+//Console.WriteLine(Random.Shared.Next(0, 2));
 
 //if (board["a2"] != null)
 //{
