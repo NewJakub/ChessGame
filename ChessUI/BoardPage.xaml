@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChessUI"
         mc:Ignorable="d"
-        Title="BoardPage" Height="450" Width="800"
-        Background="#380404">
+        d:DesignHeight="450" d:DesignWidth="800"
+        Title="BoardPage"
+        Background="White"
+        >
     <!--x:Name="WindowForMeasure"-->
     <Viewbox>
         <!--MouseDown="BoardGrid_MouseDown"-->
@@ -15,10 +17,10 @@
 
 
             <UniformGrid x:Name="PieceGrid"
-                         Rows="8"
-                         Columns="8"
-                         MinHeight="1000"
-                         MinWidth="1000">
+             Rows="8"
+             Columns="8"
+             MinHeight="1000"
+             MinWidth="1000">
 
                 <UniformGrid.Background>
                     <ImageBrush ImageSource="Assets/board.png"/>
@@ -26,6 +28,7 @@
             </UniformGrid>
             <ContentControl x:Name="MenuContainer"/>
             <ContentControl x:Name="TimerContainer" />
+            <Frame x:Name="BoardFrame"/> 
         </Grid>
 
     </Viewbox>

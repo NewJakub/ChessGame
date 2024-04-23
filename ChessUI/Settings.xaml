@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:ChessUI"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+     
       Title="Settings">
 
     <Border 
@@ -73,7 +74,8 @@
                    Grid.Column="0"
                    Grid.Row="0"
                    Grid.RowSpan="4"
-                   Grid.ColumnSpan="2"/>
+                   Grid.ColumnSpan="2"
+                   NavigationUIVisibility="Hidden"></Frame>
         </Grid>
     </Border>
 </Page>
