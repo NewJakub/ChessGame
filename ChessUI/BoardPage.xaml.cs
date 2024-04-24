@@ -261,7 +261,7 @@ namespace ChessUI
 
                 if (board.IsEndGame)
                 {
-                    //ShowGameOverMenu();
+                    ShowGameOverMenu();
 
                 }
 
@@ -275,7 +275,7 @@ namespace ChessUI
         {
             if (board.IsEndGame)
             {
-                //ShowGameOverMenu();
+                ShowGameOverMenu();
             }
             else
             {
@@ -284,8 +284,18 @@ namespace ChessUI
 
                 DrawBoard(board);
             }
+        }
+        private void ShowGameOverMenu()
+        {
+            MenuBorder.Visibility = Visibility.Visible;
+            if (board.BlackKingChecked) 
+                ResultText.Text = "Bílý vyhrál!";
 
+            else if (board.WhiteKingChecked) 
+                ResultText.Text = "Černý vyhrál!";
 
+            else 
+                ResultText.Text = "Remíza!";
         }
         private Position PointToSquare(Point point)
         {
@@ -324,6 +334,18 @@ namespace ChessUI
             }
 
             return new Position(column, row);
+        }
+
+        private void NewGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            (Application.Current.MainWindow.FindName("MainFrame") as Frame).Source = null;
+            (Application.Current.MainWindow.FindName("MainFrame") as Frame).Source = new Uri("Settings.xaml", UriKind.Relative);
+
+        }
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

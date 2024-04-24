@@ -33,15 +33,20 @@
                     Height="60"
                     >Hrát Znovu</Button>-->
 
-            <Button x:Name="QuitButton" 
+            <Button x:Name="NewGameButton" 
                     Grid.Row="1"
-                    Grid.RowSpan="2"
+                    Click="NewGameButton_Click"
+                    Style="{StaticResource ButtonStyle}"
+                    Width="300"
+                    Height="60"
+                    >Nová hra</Button>
+            <Button x:Name="QuitButton" 
+                    Grid.Row="2"
                     Click="QuitButton_Click"
                     Style="{StaticResource ButtonStyle}"
                     Width="300"
                     Height="60"
                     >Opustit aplikaci</Button>
-
         </Grid>
     </Border>
     
