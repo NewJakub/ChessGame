@@ -36,18 +36,18 @@ namespace ChessUI
             InitializeComponent();
 
             if (GameSettings.isTimerOn == true) TimerText.Visibility = Visibility.Visible;
-
+            if (!GameSettings.isWhite)
+            {
+                GenerateMove(board);
+            }
             DrawBoard(board);
             PauseMenu.GameSettings = GameSettings; 
 
         }
 
-
-
         public void DrawBoard(ChessBoard board)
         {
             PieceGrid.Children.Clear();
-
             string fen = board.ToFen().Split(' ')[0].Replace("/", string.Empty);
             if (!GameSettings.isWhite)
             {
@@ -138,24 +138,10 @@ namespace ChessUI
 
             if (c == 0)
             {
-                if (GameSettings.isWhite)
-                {
-                    if (board[pos]?.Color == null) return;
-
-                    if (board[pos].Color == 2 && GameSettings.isWhite) return;
-
-                    if (board[pos].Color == 1 && !GameSettings.isWhite) return;
-
-                }
-                else if (!GameSettings.isWhite)
-                {
-                    if (board[pos]?.Color == null) return;
-
-                    if (board[pos].Color == 2 && GameSettings.isWhite) return;
-
-                    if (board[pos].Color == 1 && !GameSettings.isWhite) return;
-
-                }
+                
+                if (board[pos]?.Color == null) return;
+                if (board[pos].Color == 2 && GameSettings.isWhite) return;
+                if (board[pos].Color == 1 && !GameSettings.isWhite) return;
 
                 chosenPos = pos;
                 c++;
@@ -173,11 +159,9 @@ namespace ChessUI
                 c = 0;
             }
         }
+
         private bool GetPlayerMove(Move move, ChessBoard board)
         {
-
-
-
             if (board.IsValidMove(move))
             {
                 board.Move(move);
@@ -191,6 +175,7 @@ namespace ChessUI
             }
             return false;
         }
+        
         private void GenerateMove(ChessBoard board)
         {
             if (board.IsEndGame)
@@ -203,6 +188,7 @@ namespace ChessUI
                 DrawBoard(board);
             }
         }
+        
         private void ShowGameOverMenu()
         {
             MenuBorder.Visibility = Visibility.Visible;
@@ -215,41 +201,77 @@ namespace ChessUI
             else 
                 ResultText.Text = "Remíza!";
         }
+        
         private Position PointToSquare(Point point)
         {
             double squareSideLength = PieceGrid.ActualHeight / 8;
             short column = (short)(point.X / squareSideLength);
             short row = (short)(point.Y / squareSideLength);
-
-            switch (row)
+            if (GameSettings.isWhite) 
             {
-                case 0:
-                    row = 7;
-                    break;
-                case 1:
-                    row = 6;
-                    break;
-                case 2:
-                    row = 5;
-                    break;
-                case 3:
-                    row = 4;
-                    break;
-                case 4:
-                    row = 3;
-                    break;
-                case 5:
-                    row = 2;
-                    break;
-                case 6:
-                    row = 1;
-                    break;
-                case 7:
-                    row = 0;
-                    break;
-                default:
-                    break;
+                switch (row)
+                {
+                    case 0:
+                        row = 7;
+                        break;
+                    case 1:
+                        row = 6;
+                        break;
+                    case 2:
+                        row = 5;
+                        break;
+                    case 3:
+                        row = 4;
+                        break;
+                    case 4:
+                        row = 3;
+                        break;
+                    case 5:
+                        row = 2;
+                        break;
+                    case 6:
+                        row = 1;
+                        break;
+                    case 7:
+                        row = 0;
+                        break;
+                    default:
+                        break;
+                }
             }
+            else
+            {
+                switch (column)
+                {
+                    case 0:
+                        column = 7;
+                        break;
+                    case 1:
+                        column = 6;
+                        break;
+                    case 2:
+                        column = 5;
+                        break;
+                    case 3:
+                        column = 4;
+                        break;
+                    case 4:
+                        column = 3;
+                        break;
+                    case 5:
+                        column = 2;
+                        break;
+                    case 6:
+                        column = 1;
+                        break;
+                    case 7:
+                        column = 0;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
 
             return new Position(column, row);
         }
@@ -265,16 +287,8 @@ namespace ChessUI
         {
             Application.Current.Shutdown();
         }
-        private void OnButtonKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.O && Keyboard.Modifiers == ModifierKeys.Control)
-            {
-            Application.Current.Shutdown();
-                e.Handled = true;
-            }
-
-            //Application.Current?.Shutdown(); ??????????????????
-        }
+        
+        //Application.Current?.Shutdown(); ??????????????????
 
         private void PauseButton_Click(object sender, RoutedEventArgs e)
         {
