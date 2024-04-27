@@ -46,165 +46,86 @@ namespace ChessUI
 
         public void DrawBoard(ChessBoard board)
         {
-            if (GameSettings.isWhite == true)
+            PieceGrid.Children.Clear();
+
+            string fen = board.ToFen().Split(' ')[0].Replace("/", string.Empty);
+            if (!GameSettings.isWhite)
             {
-                PieceGrid.Children.Clear();
-
-                string fen = board.ToFen().Split(' ')[0].Replace("/", string.Empty);
-                foreach (char item in fen)
-                {
-                    Image image = new Image();
-                    switch (item)
-                    {
-                        case 'P':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_pawn.png", UriKind.Relative));
-                            break;
-                        case 'R':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_rook.png", UriKind.Relative));
-
-                            break;
-                        case 'B':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_bishop.png", UriKind.Relative));
-
-                            break;
-                        case 'N':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_knight.png", UriKind.Relative));
-
-                            break;
-                        case 'K':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_king.png", UriKind.Relative));
-
-                            break;
-                        case 'Q':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_queen.png", UriKind.Relative));
-
-                            break;
-                        case 'p':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_pawn.png", UriKind.Relative));
-
-                            break;
-                        case 'r':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_rook.png", UriKind.Relative));
-
-                            break;
-                        case 'b':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_bishop.png", UriKind.Relative));
-
-                            break;
-                        case 'n':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_knight.png", UriKind.Relative));
-
-                            break;
-                        case 'k':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_king.png", UriKind.Relative));
-
-                            break;
-                        case 'q':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_queen.png", UriKind.Relative));
-
-                            break;
-                        default:
-                            for (int i = 0; i < char.GetNumericValue(item); i++)
-                            {
-                                Image image1 = new Image();
-                                PieceGrid.Children.Add(image1);
-                            }
-                            break;
-                    }
-                }
-            }
-            else
-            {
-                PieceGrid.Children.Clear();
-
-                string fen = board.ToFen().Split(' ')[0].Replace("/", string.Empty);
                 char[] charArray = fen.ToCharArray();
                 Array.Reverse(charArray);
                 fen = new string(charArray);
-                foreach (char item in fen)
+            }
+            foreach (char item in fen)
+            {
+                Image image = new Image();
+                switch (item)
                 {
-                    Image image = new Image();
-                    switch (item)
-                    {
-                        case 'P':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_pawn.png", UriKind.Relative));
-                            break;
-                        case 'R':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_rook.png", UriKind.Relative));
+                    case 'P':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/w_pawn.png", UriKind.Relative));
+                        break;
+                    case 'R':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/w_rook.png", UriKind.Relative));
 
-                            break;
-                        case 'B':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_bishop.png", UriKind.Relative));
+                        break;
+                    case 'B':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/w_bishop.png", UriKind.Relative));
 
-                            break;
-                        case 'N':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_knight.png", UriKind.Relative));
+                        break;
+                    case 'N':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/w_knight.png", UriKind.Relative));
 
-                            break;
-                        case 'K':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_king.png", UriKind.Relative));
+                        break;
+                    case 'K':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/w_king.png", UriKind.Relative));
 
-                            break;
-                        case 'Q':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/w_queen.png", UriKind.Relative));
+                        break;
+                    case 'Q':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/w_queen.png", UriKind.Relative));
 
-                            break;
-                        case 'p':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_pawn.png", UriKind.Relative));
+                        break;
+                    case 'p':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/b_pawn.png", UriKind.Relative));
 
-                            break;
-                        case 'r':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_rook.png", UriKind.Relative));
+                        break;
+                    case 'r':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/b_rook.png", UriKind.Relative));
 
-                            break;
-                        case 'b':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_bishop.png", UriKind.Relative));
+                        break;
+                    case 'b':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/b_bishop.png", UriKind.Relative));
 
-                            break;
-                        case 'n':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_knight.png", UriKind.Relative));
+                        break;
+                    case 'n':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/b_knight.png", UriKind.Relative));
 
-                            break;
-                        case 'k':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_king.png", UriKind.Relative));
+                        break;
+                    case 'k':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/b_king.png", UriKind.Relative));
 
-                            break;
-                        case 'q':
-                            PieceGrid.Children.Add(image);
-                            image.Source = new BitmapImage(new Uri(@"Assets/b_queen.png", UriKind.Relative));
+                        break;
+                    case 'q':
+                        PieceGrid.Children.Add(image);
+                        image.Source = new BitmapImage(new Uri(@"Assets/b_queen.png", UriKind.Relative));
 
-                            break;
-                        default:
-                            for (int i = 0; i < char.GetNumericValue(item); i++)
-                            {
-                                Image image1 = new Image();
-                                PieceGrid.Children.Add(image1);
-                            }
-                            break;
-                    }
+                        break;
+                    default:
+                        for (int i = 0; i < char.GetNumericValue(item); i++)
+                        {
+                            Image image1 = new Image();
+                            PieceGrid.Children.Add(image1);
+                        }
+                        break;
                 }
             }
         } 
