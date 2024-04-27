@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Chess;
-
+ 
 namespace ChessUI
 {    
     public partial class BoardPage : Page
@@ -26,16 +28,17 @@ namespace ChessUI
         public Position chosenFinalPos = new Position();
         public ChessBoard board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
 
-
         public int c = 0;
 
         public BoardPage()
         {
+
             InitializeComponent();
 
             if (GameSettings.isTimerOn == true) TimerText.Visibility = Visibility.Visible;
 
             DrawBoard(board);
+            PauseMenu.GameSettings = GameSettings; 
 
         }
 
@@ -262,13 +265,9 @@ namespace ChessUI
                 if (board.IsEndGame)
                 {
                     ShowGameOverMenu();
-
                 }
-
-
                 return true;
             }
-
             return false;
         }
         private void GenerateMove(ChessBoard board)
@@ -279,9 +278,7 @@ namespace ChessUI
             }
             else
             {
-
                 board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
-
                 DrawBoard(board);
             }
         }
@@ -346,6 +343,47 @@ namespace ChessUI
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+        private void OnButtonKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.O && Keyboard.Modifiers == ModifierKeys.Control)
+            {
+            Application.Current.Shutdown();
+                e.Handled = true;
+            }
+
+            //Application.Current?.Shutdown(); ??????????????????
+        }
+
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            PauseMenu pauseMenu = new PauseMenu();
+            MenuContainer.Content = pauseMenu;
+            GameSettings.isGamePaused = true;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(GameSettings.isTimerOn) 
+            {
+                DispatcherTimer dispatcherTimer = new DispatcherTimer();
+                dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
+                dispatcherTimer.Tick += dtTicker;
+                dispatcherTimer.Start();
+            }
+        }
+
+        private int increment = 0;
+
+        private void dtTicker(object sender, EventArgs e)
+        {
+            if (!GameSettings.isGamePaused)
+            {
+                increment++;
+                DateTime dt;
+                dt = new DateTime(2008, 1, 1, 18, (int)MathF.Floor(increment / 60), increment % 60);
+                TimerText.Text = dt.ToString("mm:ss", CultureInfo.InvariantCulture);
+            }
         }
     }
 }

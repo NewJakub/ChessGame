@@ -10,7 +10,7 @@
       Title="Settings">
 
     <Border 
-    Style="{StaticResource BorderStyle}">
+    Style="{StaticResource BorderStyleWindow}">
 
         <Grid>
             <Grid.RowDefinitions>
@@ -51,9 +51,9 @@
 
 
             <ComboBox Grid.Row="2"
-          Grid.Column="1"
-          x:Name="TimerSelector"
-          Style="{StaticResource ComboBoxStyle}">
+                      Grid.Column="1"
+                      x:Name="TimerSelector"
+                      Style="{StaticResource ComboBoxStyle}">
 
                 <ComboBoxItem Selector.IsSelected="True">Ne</ComboBoxItem>
                 <ComboBoxItem>Ano</ComboBoxItem>
@@ -75,7 +75,7 @@
                    Grid.Row="0"
                    Grid.RowSpan="4"
                    Grid.ColumnSpan="2"
-                   NavigationUIVisibility="Hidden"></Frame>
+                   NavigationUIVisibility="Hidden"/>
         </Grid>
     </Border>
 </Page>

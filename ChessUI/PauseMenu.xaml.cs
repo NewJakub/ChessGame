@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,10 @@ namespace ChessUI
     /// Interaction logic for PauseMenu.xaml
     /// </summary>
     
-
     public partial class PauseMenu : UserControl
     {
+        public static GameSettings GameSettings { get; set; }
+
         public PauseMenu()
         {
             InitializeComponent();
@@ -29,8 +31,10 @@ namespace ChessUI
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            BoardPage  boardPage = new BoardPage();
 
+            this.Content = null;
+            GameSettings.isGamePaused = false;
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
@@ -38,4 +42,4 @@ namespace ChessUI
             Application.Current.Shutdown();
         }
     }
-}
+}   

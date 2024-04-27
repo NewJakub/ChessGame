@@ -16,6 +16,11 @@
             <Setter Property="CornerRadius" Value="10"/>
         </Style>
 
+        <Style TargetType="Border" x:Key="BorderStyleWindow">
+            <Setter Property="BorderBrush" Value="{StaticResource StrokeColor}"/>
+            <Setter Property="Background" Value="{StaticResource FillColor}"/> 
+        </Style>
+        
         <Style TargetType="TextBlock" x:Key="TextStyle">
             <Setter Property="FontFamily" Value="Segoe UI Light"/>
             <Setter Property="FontSize" Value="50"/>
@@ -25,8 +30,9 @@
         </Style>
 
         <Style TargetType="ComboBox" x:Key="ComboBoxStyle">
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             
         </Style>

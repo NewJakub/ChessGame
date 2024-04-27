@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace ChessUI
 {
@@ -15,7 +16,7 @@ namespace ChessUI
         public Settings()
         {
             InitializeComponent();
-            GameSettings = new GameSettings(true, false);
+            GameSettings = new GameSettings(true, false, false);
 
         }
 
@@ -48,11 +49,18 @@ namespace ChessUI
             get { return _isTimerOn; }
             set { _isTimerOn = value; }
         }
+        public bool _isGamePaused;
+        public bool isGamePaused
+        {
+            get { return _isGamePaused; }
+            set { _isGamePaused = value; }
+        }
 
-        public GameSettings(bool IsWhite, bool IsTimerOn)
+        public GameSettings(bool IsWhite, bool IsTimerOn, bool IsGamePaused)
         {
             isTimerOn = IsWhite;
             isWhite = IsTimerOn;
+            isGamePaused = IsGamePaused;
         }
 
 

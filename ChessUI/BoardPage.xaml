@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         d:DesignHeight="450" d:DesignWidth="800"
         Title="BoardPage"
-        Background="White">
+        Background="White"
+        Loaded="Page_Loaded">
+    
     <Grid x:Name="BoardGrid">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -48,7 +50,18 @@
                         Grid.Column="0"
                         Grid.ColumnSpan="7"
                         Grid.RowSpan="8"/>
-        
+
+        <Button x:Name="PauseButton"
+                Click="PauseButton_Click"
+                Width="50"
+                Height="50"
+                Background="White"
+                BorderThickness="0"
+                Grid.RowSpan="2">
+            <StackPanel>
+                <Image Source="Assets/settings-icon.png"/>
+            </StackPanel>
+        </Button>
         <Border Grid.Row="2"
                 Grid.Column="2"
                 Grid.ColumnSpan="3"
@@ -91,7 +104,12 @@
         </Border>
         <TextBlock FontSize="40"
                    x:Name="TimerText"
-                   Visibility="Hidden">17:50</TextBlock>
+                   Grid.Column="5"
+                   Grid.ColumnSpan="2"
+                   Grid.RowSpan="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Visibility="Hidden">00:00</TextBlock>
 
        
     </Grid>

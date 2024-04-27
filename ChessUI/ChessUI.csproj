@@ -15,6 +15,7 @@
     <None Remove="Assets\b_queen.png" />
     <None Remove="Assets\b_rook.png" />
     <None Remove="Assets\icon.ico" />
+    <None Remove="Assets\settings-icon.png" />
     <None Remove="Assets\w_bishop.png" />
     <None Remove="Assets\w_king.png" />
     <None Remove="Assets\w_knight.png" />
@@ -36,6 +37,7 @@
     <Resource Include="Assets\b_queen.png" />
     <Resource Include="Assets\b_rook.png" />
     <Resource Include="Assets\icon.ico" />
+    <Resource Include="Assets\settings-icon.png" />
     <Resource Include="Assets\w_bishop.png" />
     <Resource Include="Assets\w_king.png" />
     <Resource Include="Assets\w_knight.png" />

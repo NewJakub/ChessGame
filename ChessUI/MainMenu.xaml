@@ -8,7 +8,7 @@
       Title="MainMenu" Height="450" Width="800">
 
     <Border 
-        Style="{StaticResource BorderStyle}">
+        Style="{StaticResource BorderStyleWindow}">
 
         <Grid>
             <Grid.RowDefinitions>
