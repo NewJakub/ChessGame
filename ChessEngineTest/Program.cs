@@ -1,14 +1,18 @@
 ﻿using Chess;
 
-var board = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
-string fen = board.ToFen().Split(' ')[0].Replace("/", string.Empty);
-
-Position pos = new Position("a2");
-Position pos1 = new Position("a4");
-
-Console.WriteLine(fen);
-
-Console.WriteLine(board.ToAscii());
+var board = ChessBoard.LoadFromFen("rnbqkbnr/pppppppp/3Q4/8/8/8/PPPPPPPP/RNB1KBNR w KQk - 0 1");
+ChessBoard b = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
+Dictionary<Move, int> moveValue = new Dictionary<Move, int>();
+b = board;
+List<Move> moves = new List<Move>();
+foreach (Move m in b.Moves())
+{
+    Console.WriteLine(m);
+    moves.Add(m);
+}
+b.Move(moves[1]);
+//board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
+Console.WriteLine(board.ToAscii()   );
 
 //while (!board.IsEndGame) 
 //{
@@ -56,25 +60,25 @@ board.ToAscii();
 //    }
 //}
 
-class ChessLogic
-{
+//class ChessLogic
+//{
     
-    public void GenerateMove(ChessBoard board) 
-    {
-        board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
-    }
-    public void GetPlayerMove(ChessBoard board)
-    {
-        string moveInput = Console.ReadLine();
+//    public void GenerateMove(ChessBoard board) 
+//    {
+//        board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
+//    }
+//    public void GetPlayerMove(ChessBoard board)
+//    {
+//        string moveInput = Console.ReadLine();
 
-        if (board.IsValidMove(moveInput))
-        {
-            board.Move(moveInput);
-        }
-        else 
-        { 
-            GetPlayerMove(board);
+//        if (board.IsValidMove(moveInput))
+//        {
+//            board.Move(moveInput);
+//        }
+//        else 
+//        { 
+//            GetPlayerMove(board);
 
-        }
-    }
-}
+//        }
+//    }
+//}

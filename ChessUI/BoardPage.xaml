@@ -9,7 +9,7 @@
         Title="BoardPage"
         Background="White"
         Loaded="Page_Loaded">
-    
+
     <Grid x:Name="BoardGrid">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -62,10 +62,10 @@
                 <Image Source="Assets/settings-icon.png"/>
             </StackPanel>
         </Button>
-        <Border Grid.Row="2"
-                Grid.Column="2"
-                Grid.ColumnSpan="3"
-                Grid.RowSpan="4"
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="5"
+                Grid.RowSpan="6"
                 x:Name="MenuBorder"
                 Visibility="Collapsed">
 

@@ -16,7 +16,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Chess;
- 
 namespace ChessUI
 {    
     public partial class BoardPage : Page
@@ -184,13 +183,72 @@ namespace ChessUI
             }
             else
             {
-                board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
+                ChessBoard b = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All }; 
+                Dictionary<Move, int> moveValue = new Dictionary<Move, int>();
+                b = board;
+                foreach (Move m in b.Moves())
+                {
+                    b = board;
+                    
+                    //b.Move(m);
+                    int boardValue = 0;
+                    string fen = b.ToFen().Split(' ')[0].Replace("/", string.Empty);
+                    foreach (char p in fen)
+                    {
+                        switch (p)
+                        {
+                            case 'P':
+                                boardValue++;
+                                break;
+                            case 'R':
+                                boardValue += 5;
+                                break;
+                            case 'B':
+                                boardValue += 3;
+                                break;
+                            case 'N':
+                                boardValue += 3;
+                                break;
+                            case 'K':
+                                boardValue += 1000;
+                                break;
+                            case 'Q':
+                                boardValue += 9;
+                                break;
+                            case 'p':
+                                boardValue--;
+                                break;
+                            case 'r':
+                                boardValue -= 5;
+                                break;
+                            case 'b':
+                                boardValue -= 3;
+                                break;
+                            case 'n':
+                                boardValue -= 3;
+                                break;
+                            case 'k':
+                                boardValue -= 1000;
+                                break;
+                            case 'q':
+                                boardValue -= 9;
+                                break;
+                            default:
+                                continue;
+                        }
+                    }
+                    moveValue.Add(m, boardValue);
+                }
+
+                //board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
+                board.Move(moveValue.MaxBy(entry => entry.Value).Key);
                 DrawBoard(board);
             }
         }
         
         private void ShowGameOverMenu()
         {
+            GameSettings.isGamePaused = true;
             MenuBorder.Visibility = Visibility.Visible;
             if (board.BlackKingChecked) 
                 ResultText.Text = "Bílý vyhrál!";
