@@ -1,18 +1,69 @@
 ﻿using Chess;
 
-var board = ChessBoard.LoadFromFen("rnbqkbnr/pppppppp/3Q4/8/8/8/PPPPPPPP/RNB1KBNR w KQk - 0 1");
-ChessBoard b = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All };
+var board = ChessBoard.LoadFromFen("rnbqkbnr/pppppppp/3Q4/8/8/8/PPPPPPPP/RNB1KBNR b KQk - 0 1");
 Dictionary<Move, int> moveValue = new Dictionary<Move, int>();
-b = board;
-List<Move> moves = new List<Move>();
-foreach (Move m in b.Moves())
+foreach (Move m in board.Moves())
 {
-    Console.WriteLine(m);
-    moves.Add(m);
+    ChessBoard b = ChessBoard.LoadFromFen(board.ToFen());
+    b.Move(m);
+    int boardValue = 0;
+    string fen = b.ToFen().Split(' ')[0].Replace("/", string.Empty);
+    foreach (char p in fen)
+    {
+        switch (p)
+        {
+            case 'P':
+                boardValue++;
+                break;
+            case 'R':
+                boardValue += 5;
+                break;
+            case 'B':
+                boardValue += 3;
+                break;
+            case 'N':
+                boardValue += 3;
+                break;
+            case 'K':
+                boardValue += 1000;
+                break;
+            case 'Q':
+                boardValue += 9;
+                break;
+            case 'p':
+                boardValue--;
+                break;
+            case 'r':
+                boardValue -= 5;
+                break;
+            case 'b':
+                boardValue -= 3;
+                break;
+            case 'n':
+                boardValue -= 3;
+                break;
+            case 'k':
+                boardValue -= 1000;
+                break;
+            case 'q':
+                boardValue -= 9;
+                break;
+            default:
+                continue;
+        }
+    }
+    moveValue.Add(m, boardValue);
 }
-b.Move(moves[1]);
+
 //board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
-Console.WriteLine(board.ToAscii()   );
+board.Move(moveValue.MinBy(entry  => entry.Value).Key);
+foreach (var lll in moveValue)
+{
+    Console.WriteLine($"{lll.Key} + {lll.Value}");
+}
+Console.WriteLine(board.ToAscii());
+Console.WriteLine(moveValue.MinBy(entry => entry.Value).Key);
+
 
 //while (!board.IsEndGame) 
 //{

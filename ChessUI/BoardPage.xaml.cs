@@ -183,14 +183,11 @@ namespace ChessUI
             }
             else
             {
-                ChessBoard b = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All }; 
                 Dictionary<Move, int> moveValue = new Dictionary<Move, int>();
-                b = board;
-                foreach (Move m in b.Moves())
+                foreach (Move m in board.Moves())
                 {
-                    b = board;
-                    
-                    //b.Move(m);
+                    ChessBoard b = ChessBoard.LoadFromFen(board.ToFen());
+                    b.Move(m);
                     int boardValue = 0;
                     string fen = b.ToFen().Split(' ')[0].Replace("/", string.Empty);
                     foreach (char p in fen)
@@ -240,9 +237,69 @@ namespace ChessUI
                     moveValue.Add(m, boardValue);
                 }
 
-                //board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
-                board.Move(moveValue.MaxBy(entry => entry.Value).Key);
+                if(GameSettings.isWhite) board.Move(moveValue.MinBy(entry => entry.Value).Key);
+                else board.Move(moveValue.MaxBy(entry => entry.Value).Key);
                 DrawBoard(board);
+                //ChessBoard b = new ChessBoard() { AutoEndgameRules = AutoEndgameRules.All }; 
+                //Dictionary<Move, int> moveValue = new Dictionary<Move, int>();
+                //b = board;
+                //foreach (Move m in b.Moves())
+                //{
+                //    b = board;
+
+                //    //b.Move(m);
+                //    int boardValue = 0;
+                //    string fen = b.ToFen().Split(' ')[0].Replace("/", string.Empty);
+                //    foreach (char p in fen)
+                //    {
+                //        switch (p)
+                //        {
+                //            case 'P':
+                //                boardValue++;
+                //                break;
+                //            case 'R':
+                //                boardValue += 5;
+                //                break;
+                //            case 'B':
+                //                boardValue += 3;
+                //                break;
+                //            case 'N':
+                //                boardValue += 3;
+                //                break;
+                //            case 'K':
+                //                boardValue += 1000;
+                //                break;
+                //            case 'Q':
+                //                boardValue += 9;
+                //                break;
+                //            case 'p':
+                //                boardValue--;
+                //                break;
+                //            case 'r':
+                //                boardValue -= 5;
+                //                break;
+                //            case 'b':
+                //                boardValue -= 3;
+                //                break;
+                //            case 'n':
+                //                boardValue -= 3;
+                //                break;
+                //            case 'k':
+                //                boardValue -= 1000;
+                //                break;
+                //            case 'q':
+                //                boardValue -= 9;
+                //                break;
+                //            default:
+                //                continue;
+                //        }
+                //    }
+                //    moveValue.Add(m, boardValue);
+                //}
+
+                ////board.Move(board.Moves()[Random.Shared.Next(board.Moves().Length)]);
+                //board.Move(moveValue.MaxBy(entry => entry.Value).Key);
+                //DrawBoard(board);
             }
         }
         
