@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\
+C:\Users\cernosek.ja.2021\skola\ChessGame\ChessUI\obj\Debug\net6.0-windows7.0\
 ChessUI
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\jakub\Skola\MVOP\ChessGame\ChessUI\App.xaml
+C:\Users\cernosek.ja.2021\skola\ChessGame\ChessUI\App.xaml
 72133072118
 
 92066343026
-196-1454098091
+1961641467693
 BoardPage.xaml;GameOverMenu.xaml;MainMenu.xaml;MainWindow.xaml;PauseMenu.xaml;Settings.xaml;Timer.xaml;
 
 False
